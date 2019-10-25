@@ -1,0 +1,53 @@
+*,
+*::before,
+*::after{
+    margin:0;
+    padding:0;
+    box-sizing:inherit;
+}
+
+html{
+    box-sizing:border-box;
+}
+
+body{
+    font-family: 'Nunito', sans-serif;
+}
+
+.container{
+    display:grid;
+    grid-template-columns:1fr repeat(8,minmax(min-content,8.9062rem)) 1fr;
+    grid-row-gap:80px;
+}
+
+.upperhead{
+    grid-column:1/-1;
+    height:45vh;
+    background-color:#000032;
+    display:flex;
+    flex-flow:column;
+    align-items:center;
+    color:white;
+    justify-content:center;
+}
+
+.mainpage{
+    grid-column:2/10;
+}
+
+.gutterbottom{
+    margin-bottom:50px;
+}
+
+.gutterbottomsmall{
+    margin-bottom:20px;
+}
+
+.MuiCircularProgress-colorPrimary{
+    color:#00b67a !important;
+}
+
+.MuiButton-contained{
+    color:white !important;
+    background-color:#00b67a !important;
+}

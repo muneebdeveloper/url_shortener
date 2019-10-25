@@ -1,0 +1,5 @@
+type URL {
+  id: ID! @id
+  longURL:String! @unique
+  shortURLcode: String @unique
+}

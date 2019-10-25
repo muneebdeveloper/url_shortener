@@ -1,7 +1,7 @@
 # source: https://eu1.prisma.sh/muhammad-muneeb-akhlaq/url_shortner/dev
-# timestamp: Tue Oct 22 2019 12:57:33 GMT+0500 (Pakistan Standard Time)
+# timestamp: Fri Oct 25 2019 10:26:03 GMT+0500 (Pakistan Standard Time)
 
-type AggregateUser {
+type AggregateURL {
   count: Int!
 }
 
@@ -17,12 +17,12 @@ Long can represent values between -(2^63) and 2^63 - 1.
 scalar Long
 
 type Mutation {
-  createUser(data: UserCreateInput!): User!
-  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
-  deleteUser(where: UserWhereUniqueInput!): User
-  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
-  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
-  deleteManyUsers(where: UserWhereInput): BatchPayload!
+  createURL(data: URLCreateInput!): URL!
+  updateURL(data: URLUpdateInput!, where: URLWhereUniqueInput!): URL
+  deleteURL(where: URLWhereUniqueInput!): URL
+  upsertURL(where: URLWhereUniqueInput!, create: URLCreateInput!, update: URLUpdateInput!): URL!
+  updateManyURLs(data: URLUpdateManyMutationInput!, where: URLWhereInput): BatchPayload!
+  deleteManyURLs(where: URLWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -53,9 +53,9 @@ type PageInfo {
 }
 
 type Query {
-  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
-  user(where: UserWhereUniqueInput!): User
-  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  uRLs(where: URLWhereInput, orderBy: URLOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [URL]!
+  uRL(where: URLWhereUniqueInput!): URL
+  uRLsConnection(where: URLWhereInput, orderBy: URLOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): URLConnection!
 
   """Fetches an object given its ID"""
   node(
@@ -65,66 +65,71 @@ type Query {
 }
 
 type Subscription {
-  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+  uRL(where: URLSubscriptionWhereInput): URLSubscriptionPayload
 }
 
-type User implements Node {
+type URL implements Node {
   id: ID!
-  name: String!
+  longURL: String!
+  shortURLcode: String
 }
 
 """A connection to a list of items."""
-type UserConnection {
+type URLConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [UserEdge]!
-  aggregate: AggregateUser!
+  edges: [URLEdge]!
+  aggregate: AggregateURL!
 }
 
-input UserCreateInput {
+input URLCreateInput {
   id: ID
-  name: String!
+  longURL: String!
+  shortURLcode: String
 }
 
 """An edge in a connection."""
-type UserEdge {
+type URLEdge {
   """The item at the end of the edge."""
-  node: User!
+  node: URL!
 
   """A cursor for use in pagination."""
   cursor: String!
 }
 
-enum UserOrderByInput {
+enum URLOrderByInput {
   id_ASC
   id_DESC
-  name_ASC
-  name_DESC
+  longURL_ASC
+  longURL_DESC
+  shortURLcode_ASC
+  shortURLcode_DESC
 }
 
-type UserPreviousValues {
+type URLPreviousValues {
   id: ID!
-  name: String!
+  longURL: String!
+  shortURLcode: String
 }
 
-type UserSubscriptionPayload {
+type URLSubscriptionPayload {
   mutation: MutationType!
-  node: User
+  node: URL
   updatedFields: [String!]
-  previousValues: UserPreviousValues
+  previousValues: URLPreviousValues
 }
 
-input UserSubscriptionWhereInput {
+input URLSubscriptionWhereInput {
   """Logical AND on all given filters."""
-  AND: [UserSubscriptionWhereInput!]
+  AND: [URLSubscriptionWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [UserSubscriptionWhereInput!]
+  OR: [URLSubscriptionWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [UserSubscriptionWhereInput!]
+  NOT: [URLSubscriptionWhereInput!]
 
   """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
@@ -143,26 +148,28 @@ input UserSubscriptionWhereInput {
   The subscription event gets only dispatched when some of the field names included in this list have been updated
   """
   updatedFields_contains_some: [String!]
-  node: UserWhereInput
+  node: URLWhereInput
 }
 
-input UserUpdateInput {
-  name: String
+input URLUpdateInput {
+  longURL: String
+  shortURLcode: String
 }
 
-input UserUpdateManyMutationInput {
-  name: String
+input URLUpdateManyMutationInput {
+  longURL: String
+  shortURLcode: String
 }
 
-input UserWhereInput {
+input URLWhereInput {
   """Logical AND on all given filters."""
-  AND: [UserWhereInput!]
+  AND: [URLWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [UserWhereInput!]
+  OR: [URLWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [UserWhereInput!]
+  NOT: [URLWhereInput!]
   id: ID
 
   """All values that are not equal to given value."""
@@ -203,48 +210,90 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
-  name: String
+  longURL: String
 
   """All values that are not equal to given value."""
-  name_not: String
+  longURL_not: String
 
   """All values that are contained in given list."""
-  name_in: [String!]
+  longURL_in: [String!]
 
   """All values that are not contained in given list."""
-  name_not_in: [String!]
+  longURL_not_in: [String!]
 
   """All values less than the given value."""
-  name_lt: String
+  longURL_lt: String
 
   """All values less than or equal the given value."""
-  name_lte: String
+  longURL_lte: String
 
   """All values greater than the given value."""
-  name_gt: String
+  longURL_gt: String
 
   """All values greater than or equal the given value."""
-  name_gte: String
+  longURL_gte: String
 
   """All values containing the given string."""
-  name_contains: String
+  longURL_contains: String
 
   """All values not containing the given string."""
-  name_not_contains: String
+  longURL_not_contains: String
 
   """All values starting with the given string."""
-  name_starts_with: String
+  longURL_starts_with: String
 
   """All values not starting with the given string."""
-  name_not_starts_with: String
+  longURL_not_starts_with: String
 
   """All values ending with the given string."""
-  name_ends_with: String
+  longURL_ends_with: String
 
   """All values not ending with the given string."""
-  name_not_ends_with: String
+  longURL_not_ends_with: String
+  shortURLcode: String
+
+  """All values that are not equal to given value."""
+  shortURLcode_not: String
+
+  """All values that are contained in given list."""
+  shortURLcode_in: [String!]
+
+  """All values that are not contained in given list."""
+  shortURLcode_not_in: [String!]
+
+  """All values less than the given value."""
+  shortURLcode_lt: String
+
+  """All values less than or equal the given value."""
+  shortURLcode_lte: String
+
+  """All values greater than the given value."""
+  shortURLcode_gt: String
+
+  """All values greater than or equal the given value."""
+  shortURLcode_gte: String
+
+  """All values containing the given string."""
+  shortURLcode_contains: String
+
+  """All values not containing the given string."""
+  shortURLcode_not_contains: String
+
+  """All values starting with the given string."""
+  shortURLcode_starts_with: String
+
+  """All values not starting with the given string."""
+  shortURLcode_not_starts_with: String
+
+  """All values ending with the given string."""
+  shortURLcode_ends_with: String
+
+  """All values not ending with the given string."""
+  shortURLcode_not_ends_with: String
 }
 
-input UserWhereUniqueInput {
+input URLWhereUniqueInput {
   id: ID
+  longURL: String
+  shortURLcode: String
 }
