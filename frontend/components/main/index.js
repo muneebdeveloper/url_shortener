@@ -29,9 +29,9 @@ class Main extends Component{
                         <div style={{gridColumn:"2/10",textAlign:"center"}}>
                             <a 
                             style={{color:"gray"}}
-                            href={this.state.longURL}
+                            href={`${window.location.origin}/${this.state.shortURL}`}
                             target="_blank"
-                            ><h1>{`${window.location.origin}/?url=${this.state.shortURL}`}</h1></a>                        
+                            ><h1>{`${window.location.origin}/${this.state.shortURL}`}</h1></a>                        
                         </div>
                     )
                 }

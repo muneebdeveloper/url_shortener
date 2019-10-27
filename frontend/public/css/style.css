@@ -31,8 +31,12 @@ body{
     justify-content:center;
 }
 
-.mainpage{
-    grid-column:2/10;
+.loadingpage{
+    grid-column:1/-1;
+    height:100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;;
 }
 
 .gutterbottom{

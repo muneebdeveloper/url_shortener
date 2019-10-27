@@ -59,10 +59,11 @@ class Search extends Component{
             })
 
         }catch(err){
+            
             this.setState({
                 loading:false,
                 errorDialog:true,
-                errorMessage:"something went wrong"
+                errorMessage:err.message.split(": ").pop()
             })
         }
 
