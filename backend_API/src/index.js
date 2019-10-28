@@ -3,7 +3,7 @@ require('dotenv').config({path:".env"});
 
 const server = createServer();
 
-
+// Server starts here
 server.start({
     cors:{
         credentials:true,
