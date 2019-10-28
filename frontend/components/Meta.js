@@ -9,7 +9,7 @@ const Meta = ()=>(
         {/* <link rel="stylesheet" type="text/css" href="static/css/nprogress.css" /> */}
         <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" />
-        <title>React POS</title>
+        <title>URL Shortner by Muneeb Akhlaq</title>
     </Head>
 )
 
