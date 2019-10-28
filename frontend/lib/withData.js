@@ -10,7 +10,7 @@ import { ApolloClient } from 'apollo-client';
 import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
 
-import { endpoint, prodEndpoint, wsEndpoint } from '../config';
+require('dotenv').config({path:".env"});
 
 
 function createClient({ headers }) {
@@ -18,13 +18,13 @@ function createClient({ headers }) {
 
   // const networkLink = new HttpLink({
   const httpLink = new HttpLink({
-    uri: process.env.NODE_ENV === 'development' ? endpoint : prodEndpoint,
+    uri: process.env.NODE_ENV === 'development' ? process.env.endpoint : process.env.prodEndpoint,
     credentials: 'include',
   });
 
   // Create a WebSocket link:
   const wsLink = process.browser ? new WebSocketLink({
-    uri: wsEndpoint,
+    uri: process.env.NODE_ENV === 'development' ? process.env.wsEndpoint : process.env.prodwsEndpoint,
     options: {
       reconnect: true,
     },
