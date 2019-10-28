@@ -6,9 +6,6 @@ const Mutation = {
 
     async createURL(parent,args,ctx,info){
 
-        // Convering the longURL into lower case
-        args.data.longURL = args.data.longURL.toLowerCase();
-
         // Adding http at the beginning if the user forgots to enter
         if(!args.data.longURL.startsWith("http")){
                 if(args.data.longURL.startsWith("ftp")){
