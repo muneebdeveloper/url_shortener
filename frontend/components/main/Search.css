@@ -26,7 +26,8 @@
 
 .loadingDiv{
     position: absolute !important;
-    bottom: 0;
+    top:50%;
+    transform:translateY(-45%);
     right:7px;
 }
 
