@@ -79,10 +79,10 @@ function createClient({ headers }) {
       onError(({ graphQLErrors, networkError }) => {
         if (graphQLErrors) {
           // sendToLoggingService(graphQLErrors);
-          console.log('here is some error',graphQLErrors);
+          // console.log('here is some error',graphQLErrors);
         }
         if (networkError) {
-          console.log('there is a network error',networkError);
+          // console.log('there is a network error',networkError);
           // logoutUser();
         }
       }),
