@@ -17,9 +17,6 @@ const Mutation = {
         // Checking if the url is valid
         try{
             const myUrl = new URL(args.data.longURL);
-            if(!myUrl.host.endsWith(".com")){
-                throw new Error("Invlaid URL Entered. Only alphabet url is valid");
-            }
         }catch(err){
             throw new Error("Invalid URL");
         }
